@@ -14,7 +14,6 @@
 			"version": "1.40.12"
 		}
 	},
-
 	"sap.ui": {
 		"technology": "UI5",
 		"icons": {
@@ -30,13 +29,8 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_belize"
-
-		]
+		"supportedThemes": ["sap_hcb", "sap_belize"]
 	},
-
 	"sap.ui5": {
 		"rootView": {
 			"viewName": "com.ordina.parkconnectHackaton_ParkConnect.view.Main",
@@ -71,6 +65,59 @@
 			"css": [{
 				"uri": "css/style.css"
 			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"targetsClass": "sap.m.routing.Targets",
+				"viewType": "XML",
+				"viewPath": "com.ordina.parkconnectHackaton_ParkConnect.view",
+				"controlAggregation": "pages",
+				"controlId": "main"
+			},
+			"routes": [{
+				"name": "Main",
+				"pattern": "",
+				"target": "main"
+			}, {
+				"pattern": "start",
+				"name": "start",
+				"target": "start"
+			}, {
+				"pattern": "drive",
+				"name": "drive",
+				"target": "drive"
+			}, {
+				"pattern": "book",
+				"name": "book",
+				"target": "book"
+			}, {
+				"pattern": "settings",
+				"name": "settings",
+				"target": "settings"
+			}],
+			"targets": {
+				"main": {
+					"viewName": "Main",
+					"viewLevel": 1
+				},
+				"start": {
+					"viewName": "Start",
+					"viewLevel": 2
+				},
+				"book": {
+					"viewName": "Book",
+					"viewLevel": 2
+				},
+				"drive": {
+					"viewName": "Drive",
+					"viewLevel": 2
+				},
+				"settings": {
+					"viewName": "Settings",
+					"viewLevel": 2
+				}
+			}
 		}
 	}
 }
