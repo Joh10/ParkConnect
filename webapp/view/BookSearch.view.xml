@@ -1,12 +1,36 @@
 <mvc:View controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.BookSearch" xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<App>
-		<pages>
-			<Page title="{i18n>title}">
+	<SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
+		<detailPages>
+			<Page id="detail" title="Detail 1" class="sapUiStdPage">
 				<content>
-					
+					<Label text="Detail page 1"/>
+				</content>
+				<footer>
+					<Button text="Send" press="onSendPress"/>
+				</footer>
+			</Page>
+		</detailPages>
+		<masterPages>
+			<Page id="master" title="Master 1" icon="sap-icon://action" class="sapUiStdPage">
+				<content>
+					<List id="list"
+						items="{ path: '/OpportunityCollection', sorter: { path: 'OpportunityID', descending: true }, groupHeaderFactory: '.createGroupHeader' }"
+						busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}"
+						mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true"
+						updateFinished="onUpdateFinished" selectionChange="onSelectionChange">
+						<infoToolbar>
+							<Toolbar active="true" id="filterBar" visible="{masterView>/isFilterBarVisible}" press="onOpenViewSettings">
+								<Title id="filterBarLabel" text="{masterView>/filterBarLabel}"/>
+							</Toolbar>
+						</infoToolbar>
+						<items>
+							<ObjectListItem type="Navigation" press="onSelectionChange" title="{OpportunityID}"
+								numberUnit="{HeaderRevenueSchedule}"></ObjectListItem>
+						</items>
+					</List>
 				</content>
 			</Page>
-		</pages>
-	</App>
+		</masterPages>
+	</SplitApp>
 </mvc:View>

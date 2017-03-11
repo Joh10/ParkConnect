@@ -1,10 +1,18 @@
-<mvc:View controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<App>
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Main" displayBlock="true">
+	<App id="main">
 		<pages>
-			<Page title="{i18n>title}">
+			<Page title="EcoMob">
+				<headerContent>
+					<Button icon="sap-icon://settings" tooltip="Change settings" press="onSettingsPress"/>
+				</headerContent>
 				<content>
-					
+					<TileContainer>
+						<tiles>
+							<StandardTile title="Start" info="{openweather>weather/0/description}" infoState="Success" id="_tile0" number="{openweather>main/temp}" numberUnit="Celsius" press="onStartPress" tooltip="" icon="sap-icon://map"/>
+							<StandardTile title="Plannification" info="{openweather>weather/0/description}" infoState="Success" id="_tile1" number="{openweather>main/temp}" numberUnit="Celsius" press="onPlannificationPress" tooltip="" icon="sap-icon://calendar"/>
+							<StandardTile title="Book" info="{openweather>weather/0/description}" infoState="Success" id="_tile2" number="{openweather>main/temp}" numberUnit="Celsius" press="onBookPress" tooltip="" icon="sap-icon://search"/>
+						</tiles>
+					</TileContainer>
 				</content>
 			</Page>
 		</pages>
