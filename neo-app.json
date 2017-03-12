@@ -20,20 +20,12 @@
       "description": "SAPUI5 Test Resources"
     },
     {
-      "path": "/oDataParkingService",
+      "path": "/parkconnectxsworkspace/tablesdata.xsodata",
       "target": {
         "type": "destination",
         "name": "oDataParking"
       },
-      "description": "oDataParking System"
-    },
-    {
-      "path": "/C4D",
-      "target": {
-        "type": "destination",
-        "name": "C4D"
-      },
-      "description": "C4D System"
+      "description": "HANA XS oData"
     }
   ],
   "sendWelcomeFileRedirect": true

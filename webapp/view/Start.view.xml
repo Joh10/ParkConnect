@@ -11,11 +11,11 @@
 		<masterPages>
 			<Page id="master" title="Master 1" icon="sap-icon://action" class="sapUiStdPage" navButtonPress="onNavBack" showNavButton="true">
 				<content>
-					<List id="list" items="{oDataParking>/Users}" noDataText="{masterView>/noDataText}"
+					<List id="list" items="{/Users}" noDataText="{masterView>/noDataText}"
 						mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true"
 						updateFinished="onUpdateFinished" selectionChange="onSelectionChange">
 						<items>
-							<ObjectListItem type="Navigation" press="onSelectionChange" title="{oDataParking>USERNAME}" number="kms"/>
+							<ObjectListItem type="Navigation" press="onSelectionChange" title="{USERNAME}" number="kms"/>
 						</items>
 					</List>
 				</content>

@@ -1,31 +1,33 @@
 sap.ui.define([
-			"sap/ui/core/mvc/Controller",
-			"sap/ui/core/routing/History"
-		], function(Controller, History) {
-			"use strict";
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/routing/History",
+	"com/ordina/parkconnectHackaton_ParkConnect/model/models"
+], function(Controller, History, models) {
+	"use strict";
 
-			return Controller.extend("com.ordina.parkconnectHackaton_ParkConnect.controller.Start", {
-				onInit: function() {
+	return Controller.extend("com.ordina.parkconnectHackaton_ParkConnect.controller.Start", {
+		onInit: function() {
+			var model = new sap.ui.model.odata.v2.ODataModel("/parkconnectxsworkspace/tablesdata.xsodata");
+			this.getView().setModel(model);
+		},
+		onAfterRendering: function() {
+			if (!this.initialized) {
+				this.initialized = true;
+				this.geocoder = new google.maps.Geocoder();
+				window.mapOptions = {
+					center: new google.maps.LatLng(-34.397, 150.644),
+					zoom: 8,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				//This is basically for setting the initial position of the map, ie. Setting the coordinates, for the place by default
 
-					this.getView().byId("map");
-				},
-				onAfterRendering: function() {
-					if (!this.initialized) {
-						this.initialized = true;
-						this.geocoder = new google.maps.Geocoder();
-						window.mapOptions = {
-							center: new google.maps.LatLng(-34.397, 150.644),
-							zoom: 8,
-							mapTypeId: google.maps.MapTypeId.ROADMAP
-						};
-						//This is basically for setting the initial position of the map, ie. Setting the coordinates, for the place by default
-
-						var map = new google.maps.Map(this.getView().byId("map_canvas").getDomRef(), mapOptions);
-						var infowindow = new google.maps.InfoWindow;
-						var geocoder = new google.maps.Geocoder();
-						var marker = new google.maps.Marker({
-							map: map
-						});
+				var map = new google.maps.Map(this.getView().byId("map_canvas").getDomRef(), mapOptions);
+				this.map = map;
+				var infowindow = new google.maps.InfoWindow;
+				var geocoder = new google.maps.Geocoder();
+				var marker = new google.maps.Marker({
+					map: map
+				});
 
 				// 		google.maps.event.addListener(map, "click", function(e) {
 				// 			var lolatitude = e.latLng.lat(); //calculates latitude of the point of click
@@ -203,7 +205,7 @@ sap.ui.define([
 
 				// 	flightPath.setMap(newmap1);
 
-				}
-				}
-			});
-		});
+			}
+		}
+	});
+});

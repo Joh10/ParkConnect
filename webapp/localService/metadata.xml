@@ -1,0 +1,124 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+        <Schema
+            xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+            xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="parkconnectxsworkspace.tablesdata">
+            <EntityType Name="ParkingType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="PARKING" Type="Edm.String" MaxLength="50"/>
+                <Property Name="LATITUDE" Type="Edm.Double"/>
+                <Property Name="LONGITUDE" Type="Edm.Double"/>
+            </EntityType>
+            <EntityType Name="ParkingHistoryType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="REFID_PARKING" Type="Edm.Int32"/>
+                <Property Name="TOTAL" Type="Edm.Int32"/>
+                <Property Name="FREE" Type="Edm.Int32"/>
+                <Property Name="DATE_TIME" Type="Edm.DateTime"/>
+            </EntityType>
+            <EntityType Name="UsersType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="USERNAME" Type="Edm.String" MaxLength="50"/>
+                <Property Name="PASS" Type="Edm.String" MaxLength="50"/>
+                <Property Name="FIRSTNAME" Type="Edm.String" MaxLength="50"/>
+                <Property Name="LASTNAME" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityType Name="LocalisationUsersType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="REFID_USERS" Type="Edm.Int32"/>
+                <Property Name="LATITUDE" Type="Edm.Double"/>
+                <Property Name="LONGITUDE" Type="Edm.Double"/>
+                <Property Name="AVAILABLE" Type="Edm.Int32"/>
+                <Property Name="SHARING" Type="Edm.Int32"/>
+                <Property Name="DATE_TIME" Type="Edm.DateTime"/>
+                <Property Name="SEQNO" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="DestinationUsersType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="REFID_WEEKDAY" Type="Edm.Int32"/>
+                <Property Name="REFID_USERS" Type="Edm.Int32"/>
+                <Property Name="LATITUDE" Type="Edm.Double"/>
+                <Property Name="LONGITUDE" Type="Edm.Double"/>
+                <Property Name="DATE_TIME" Type="Edm.DateTime"/>
+                <Property Name="SEQNO" Type="Edm.Int32"/>
+                <Property Name="KMS" Type="Edm.Double"/>
+                <Property Name="DURATION" Type="Edm.Time"/>
+            </EntityType>
+            <EntityType Name="ParkingUsersType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="REFID_PARKING" Type="Edm.Int32"/>
+                <Property Name="REFID_DESTINATIONUSERS" Type="Edm.Int32"/>
+                <Property Name="DATE_TIME" Type="Edm.DateTime"/>
+                <Property Name="SEQNO" Type="Edm.Int32"/>
+                <Property Name="FINAL" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="WeekDayType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="WEEKDAY" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="DestinationHabitUsersType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="REFID_USERS" Type="Edm.Int32"/>
+                <Property Name="STARTLATITUDE" Type="Edm.Double"/>
+                <Property Name="STARTTIME1" Type="Edm.Time"/>
+                <Property Name="STARTTIME2" Type="Edm.Time"/>
+                <Property Name="ENDLATITUDE" Type="Edm.Double"/>
+                <Property Name="ENDLONGITUDE" Type="Edm.Double"/>
+                <Property Name="ENDTIME1" Type="Edm.Time"/>
+                <Property Name="ENDTIME2" Type="Edm.Time"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" MaxLength="300"/>
+                <Property Name="KMS" Type="Edm.Double"/>
+                <Property Name="DURATION" Type="Edm.Time"/>
+            </EntityType>
+            <EntityType Name="BookingUsersType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="REFID_USERS" Type="Edm.Int32"/>
+                <Property Name="STARTTIME1" Type="Edm.Time"/>
+                <Property Name="STARTTIME2" Type="Edm.Time"/>
+                <Property Name="ENDLATITUDE" Type="Edm.Double"/>
+                <Property Name="ENDLONGITUDE" Type="Edm.Double"/>
+            </EntityType>
+            <EntityContainer Name="tablesdata" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Parking" EntityType="parkconnectxsworkspace.tablesdata.ParkingType"/>
+                <EntitySet Name="ParkingHistory" EntityType="parkconnectxsworkspace.tablesdata.ParkingHistoryType"/>
+                <EntitySet Name="Users" EntityType="parkconnectxsworkspace.tablesdata.UsersType"/>
+                <EntitySet Name="LocalisationUsers" EntityType="parkconnectxsworkspace.tablesdata.LocalisationUsersType"/>
+                <EntitySet Name="DestinationUsers" EntityType="parkconnectxsworkspace.tablesdata.DestinationUsersType"/>
+                <EntitySet Name="ParkingUsers" EntityType="parkconnectxsworkspace.tablesdata.ParkingUsersType"/>
+                <EntitySet Name="WeekDay" EntityType="parkconnectxsworkspace.tablesdata.WeekDayType"/>
+                <EntitySet Name="DestinationHabitUsers" EntityType="parkconnectxsworkspace.tablesdata.DestinationHabitUsersType"/>
+                <EntitySet Name="BookingUsers" EntityType="parkconnectxsworkspace.tablesdata.BookingUsersType"/>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
