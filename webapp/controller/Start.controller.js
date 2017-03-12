@@ -13,6 +13,108 @@ sap.ui.define([
 		onAfterRendering: function() {
 			if (!this.initialized) {
 				this.initialized = true;
+						this.geocoder = new google.maps.Geocoder();
+						window.mapOptions = {
+							center: new google.maps.LatLng(49.800, 6.100),
+							zoom:9,
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+						};
+						//This is basically for setting the initial position of the map, ie. Setting the coordinates, for the place by default
+						
+						var map = new google.maps.Map(this.getView().byId("map_canvas").getDomRef(), mapOptions);
+						this.map = map;
+						// Initial Destination
+						this.directionService = new google.maps.DirectionsService();
+						this.directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
+						this.markers = [];
+						this.parkings = [];
+						
+						var that = this;
+						var modelLocalisationUsers = new sap.ui.model.odata.v2.ODataModel("/parkconnectxsworkspace/tablesdata.xsodata");
+						
+						modelLocalisationUsers.read("/LocalisationUsers", {
+							
+							success: function(response) {
+								
+								response.results.forEach(function(user) {
+									
+									if(user.REFID_USERS !== 1) return;
+									
+									that.origin = new google.maps.LatLng(user.LATITUDE,user.LONGITUDE);
+									
+									var modelDestinationUsers = new sap.ui.model.odata.v2.ODataModel("/parkconnectxsworkspace/tablesdata.xsodata");
+						
+									modelDestinationUsers.read("/DestinationUsers", {
+										
+										success: function(responseD) {
+											
+											responseD.results.forEach(function(userD) {
+												
+												if(userD.REFID_USERS !== 1) return;
+												
+												that.destination = new google.maps.LatLng(userD.LATITUDE,userD.LONGITUDE);
+						
+												var request = {
+													origin: that.origin,
+													destination: that.destination,
+													travelMode: google.maps.DirectionsTravelMode.DRIVING
+												};
+												
+												that.directionService.route(request, function(result, status) {
+						
+													if (status == google.maps.DirectionsStatus.OK) {
+														
+														that.directionsRenderer.setDirections(result);
+													
+													}
+												
+												});
+												
+											});
+											
+										}
+									});
+									
+								});
+								
+							}
+						});
+			
+						// Parkings
+						var modelParking = new sap.ui.model.odata.v2.ODataModel("/parkconnectxsworkspace/tablesdata.xsodata");
+
+						modelParking.read("/Parking", {
+							
+							success: function(response) {
+								
+								response.results.forEach(function(parking) {
+									
+									if(parking.LATITUDE === null) return;
+									
+									var title = parking.PARKING;
+									var coords = new google.maps.LatLng(parking.LATITUDE,parking.LONGITUDE);
+									var marker = new google.maps.Marker({
+										position: coords,
+										map: map,
+										icon: "parking-icon.png",
+										//label: title,
+										title: title,
+										draggable: false
+									});
+									
+									that.markers.push(marker);
+									
+									marker.addListener('click', function() {
+										var coords = new google.maps.LatLng(parking.LATITUDE,parking.LONGITUDE);
+										that.parkings.push({
+											location: coords, 
+											stopover: true
+										});
+									});
+								});
+							}
+						});
+
 				this.geocoder = new google.maps.Geocoder();
 				window.mapOptions = {
 					center: new google.maps.LatLng(-34.397, 150.644),
@@ -206,6 +308,34 @@ sap.ui.define([
 				// 	flightPath.setMap(newmap1);
 
 			}
+		},
+		setFinalDirection: function() {
+			for (var i = 0; i < this.markers.length; i++) {
+				this.markers[i].setMap(null);
+			}
+			
+			var request = {
+				origin: this.origin,
+				destination: this.destination,
+				waypoints: this.parkings,
+				optimizeWaypoints: true,
+				travelMode: google.maps.DirectionsTravelMode.DRIVING
+			}
+			
+			var that = this;
+	
+			that.directionService.route(request, function(result, status) {
+			
+				if (status == google.maps.DirectionsStatus.OK) {
+
+					that.directionsRenderer.setDirections(result);
+					
+					for (var i = 0; i < result.routes[0].legs.length; i++) {
+						that.totalDistance += result.routes[0].legs[i].distance.value;
+						that.totalDuration += result.routes[0].legs[i].duration.value;
+					}
+				}		
+			});
 		}
 	});
 });
