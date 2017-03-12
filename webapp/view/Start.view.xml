@@ -2,20 +2,20 @@
 	controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Start" displayBlock="true">
 	<SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
 		<detailPages>
-			<Page id="detail" title="Detail 1" class="sapUiStdPage">
+			<Page id="detail" title="Map destination" class="sapUiStdPage">
 				<content id="map">
 					<HBox id="map_canvas" fitContainer="true" justifyContent="Center" alignItems="Center"/>
 				</content>
 			</Page>
 		</detailPages>
 		<masterPages>
-			<Page id="master" title="Master 1" icon="sap-icon://action" class="sapUiStdPage" navButtonPress="onNavBack" showNavButton="true">
+			<Page id="master" title="Habits users destinations" icon="sap-icon://action" class="sapUiStdPage" navButtonPress="onNavBack" showNavButton="true">
 				<content>
-					<List id="list" items="{/Users}" noDataText="{masterView>/noDataText}"
+					<List id="list" items="{/DestinationHabitUsers}" noDataText="{masterView>/noDataText}"
 						mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true"
 						updateFinished="onUpdateFinished" selectionChange="onSelectionChange">
 						<items>
-							<ObjectListItem type="Navigation" press="onSelectionChange" title="{USERNAME}" number="kms"/>
+							<ObjectListItem type="Navigation" press="onSelectionChange" title="{DESCRIPTION}" number="{KMS}" numberUnit="kms"/>
 						</items>
 					</List>
 				</content>

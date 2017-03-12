@@ -76,16 +76,28 @@
 							</VBox>
 						</layout:content>
 					</layout:Grid>
-				</content>
-				<footer>
-					<Toolbar>
-						<content>
-							<ToolbarSpacer/>
-							<Button id="saveButton" text="Save" press="onSavePress" icon="sap-icon://save" type="Accept"/>
-						</content>
-					</Toolbar>
-				</footer>
-			</Page>
-		</pages>
-	</App>
-</mvc:View>
+					<List id="notificationList" class="sapContrast sapContrastPlus" visible="false">
+						<NotificationListItem
+							title="New order (#2525) With a very long title - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc."
+							description="And with a very long description and long labels of the action buttons - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, turpis vel scelerisque pharetra, tellus odio vehicula dolor, nec elementum lectus turpis at nunc."
+							showCloseButton="true" datetime="1 hour" unread="true" priority="None" close="onItemClose" press="onListItemPress" authorName="Jean Doe"
+							authorPicture="test-resources/sap/m/images/Woman_04.png">
+							<buttons>
+								<Button text="Accept All Requested Information" type="Accept" press="onAcceptPress"/>
+								<Button text="Reject All Requested Information" type="Reject" press="onRejectPress"/>
+							</buttons>
+						</NotificationListItem>
+					</List>
+					</content>
+					<footer>
+						<Toolbar>
+							<content>
+								<ToolbarSpacer/>
+								<Button id="saveButton" text="Save" press="onSavePress" icon="sap-icon://save" type="Accept"/>
+							</content>
+						</Toolbar>
+					</footer>
+				</Page>
+			</pages>
+		</App>
+	</mvc:View>

@@ -42,9 +42,9 @@ sap.ui.define([
 			data["REFID_USERS"] = 1;
 			data["PASS"] = "blabla";
 			data["DATE_TIME"] = this.getView().byId("TP1").getDateValue();
-			data["LASTNAME"] = "C";
+			data["DESCRIPTION"] = this.getView().byId("descriptionInput").getValue();
 
-			hanaOdatModel.create("/DestinationUsers", data, {
+			hanaOdatModel.create("/DestinationHabitUsers", data, {
 				success: function(oData) {
 					console.log("success");
 
