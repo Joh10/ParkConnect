@@ -1,11 +1,24 @@
-<mvc:View controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Settings" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Settings" displayBlock="true">
 	<App>
 		<pages>
-			<Page title="{i18n>title}" navButtonPress="onNavBack" showNavButton="true">
-				<content>
-					
-				</content>
+			<Page title="{i18n>title}" navButtonPress="onNavBack" showNavButton="true" showFooter="false">
+			<content>
+			    <sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true" layout="ResponsiveGridLayout" id="__form2">
+			        <sap.ui.layout.form:content>
+			            <Label text="Detour range" id="__label0"/>
+			            <Slider id="detourLabel" max="40"/>
+			            <Input width="100%" id="detourInput"/>
+			            <Label text="Time tolerance up" width="100%" id="__label2"/>
+			            <Slider id="toleranceUpSlider" max="30"/>
+			            <Input width="100%" id="toleranceUpInput"/>
+			            <Label text="Label" width="100%" id="__label3"/>
+			            <Slider id="toleranceDownSlider" max="0" min="-30"/>
+			            <Input width="100%" id="toleranceDownInput"/>
+			            <Label text="Max. available sits" width="100%" id="__label1"/>
+			            <Input width="100%" id="sitsInput"/>
+			            <CheckBox id="ownerCheckBox" text="I own my car"/></sap.ui.layout.form:content>
+			    </sap.ui.layout.form:SimpleForm>
+			</content>
 			</Page>
 		</pages>
 	</App>
