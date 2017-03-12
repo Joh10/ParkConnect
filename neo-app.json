@@ -18,6 +18,14 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/oDataParkingService",
+      "target": {
+        "type": "destination",
+        "name": "oDataParking"
+      },
+      "description": "oDataParking System"
     }
   ],
   "sendWelcomeFileRedirect": true

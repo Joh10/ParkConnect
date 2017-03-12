@@ -3,8 +3,12 @@ sap.ui.define([
 	"sap/ui/core/routing/History"
 ], function(Controller, History) {
 	"use strict";
-
+	
 	return Controller.extend("com.ordina.parkconnectHackaton_ParkConnect.controller.Start", {
+		onInit:function() {
+
+			this.getView().byId("map");	
+		},
 		onNavBack: function () {
 			var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();

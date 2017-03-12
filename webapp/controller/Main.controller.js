@@ -13,6 +13,23 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function(Controller) {
 		onSettingsPress: function() {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("settings");
+			var hanaOdatModel = new sap.ui.model.odata.ODataModel("/oDataParkingService");
+			var data = {};
+			data["ID"] = "0";
+			data["USERNAME"] = "Jo";
+			data["PASS"] = "blabla";
+			data["FIRSTNAME"] = "userId";
+			data["LASTNAME"] = "C";
+
+			hanaOdatModel.create("/Users", data, {
+				success: function(oData) {
+					console.log("success");
+
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
 		},
 		/**
 		 *@memberOf com.ordina.parkconnectHackaton_ParkConnect.controller.Main

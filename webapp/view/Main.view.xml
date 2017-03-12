@@ -11,6 +11,7 @@
 							<StandardTile title="Start" info="{openweather>weather/0/description}" infoState="Success" id="_tile0" number="{openweather>main/temp}" numberUnit="Celsius" press="onStartPress" tooltip="" icon="sap-icon://map"/>
 							<StandardTile title="Plannification" info="{openweather>weather/0/description}" infoState="Success" id="_tile1" number="{openweather>main/temp}" numberUnit="Celsius" press="onPlannificationPress" tooltip="" icon="sap-icon://calendar"/>
 							<StandardTile title="Book" info="{openweather>weather/0/description}" infoState="Success" id="_tile2" number="{openweather>main/temp}" numberUnit="Celsius" press="onBookPress" tooltip="" icon="sap-icon://search"/>
+							<StandardTile title="MyBook" info="{openweather>weather/0/description}" infoState="Success" id="_tile3" number="{openweather>main/temp}" numberUnit="Celsius" press="onMyBookPress" tooltip="" icon="sap-icon://search"/>
 						</tiles>
 					</TileContainer>
 				</content>

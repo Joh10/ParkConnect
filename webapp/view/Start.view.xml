@@ -2,12 +2,12 @@
 	<SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
 		<detailPages>
 			<Page id="detail" title="Detail 1" class="sapUiStdPage">
-				<content>
-					<Label text="Detail page 1"/>
-					<Button text="Go to Detail page2" press="onPressNavToDetail"/>
+				<content id="map">
+					
 				</content>
 			</Page>
 		</detailPages>
+		
 		<masterPages>
 			<Page id="master" title="Master 1" icon="sap-icon://action" class="sapUiStdPage" navButtonPress="onNavBack" showNavButton="true">
 				<content>
