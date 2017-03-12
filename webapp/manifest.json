@@ -115,6 +115,11 @@
 					"pattern": "settings",
 					"name": "settings",
 					"target": "settings"
+				},
+				{
+					"pattern": "mybook",
+					"name": "mybook",
+					"target": "mybook"
 				}
 			],
 			"targets": {
@@ -137,8 +142,16 @@
 				"settings": {
 					"viewName": "Settings",
 					"viewLevel": 2
+				},
+				"mybook": {
+					"viewName": "myBook",
+					"viewLevel": 2
 				}
 			}
 		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
 	}
 }

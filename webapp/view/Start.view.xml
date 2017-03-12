@@ -4,6 +4,17 @@
 		<detailPages>
 			<Page id="detail" title="Map destination" class="sapUiStdPage">
 				<content id="map">
+					<List id="notificationList" class="sapContrast sapContrastPlus" visible="true">
+						<NotificationListItem
+							title="New event (#2525) Car sharing proposal."
+							description="Do you want to share your car with @JohnDoe1337 ? Estimated saved money 6,85€"
+							showCloseButton="true" unread="true" priority="None" close="onItemClose" press="onNotificationAccept" authorName="Jean Doe"
+							authorPicture="test-resources/sap/m/images/Woman_04.png">
+							<buttons>
+								<Button text="Accept All Requested Information" type="Accept" press="onNotificationAccept"/>
+							</buttons>
+						</NotificationListItem>
+					</List>
 					<HBox id="map_canvas" fitContainer="true" justifyContent="Center" alignItems="Center"/>
 				</content>
 			</Page>

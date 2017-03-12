@@ -1,0 +1,12 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.myBook" >
+	<App>
+		<pages>
+			<Page title="My Books" showNavButton="true" navButtonPress="onNavBack">
+				<content>
+					<Text text="Not implemented yet." id="__text0"/>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -6,6 +6,17 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("com.ordina.parkconnectHackaton_ParkConnect.controller.Start", {
+		onNavBack: function () {
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("main", {}, true);
+			}
+		},
 		onInit: function() {
 			var model = new sap.ui.model.odata.v2.ODataModel("/parkconnectxsworkspace/tablesdata.xsodata");
 			this.getView().setModel(model);
@@ -115,21 +126,6 @@ sap.ui.define([
 							}
 						});
 
-				this.geocoder = new google.maps.Geocoder();
-				window.mapOptions = {
-					center: new google.maps.LatLng(-34.397, 150.644),
-					zoom: 8,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-				};
-				//This is basically for setting the initial position of the map, ie. Setting the coordinates, for the place by default
-
-				var map = new google.maps.Map(this.getView().byId("map_canvas").getDomRef(), mapOptions);
-				this.map = map;
-				var infowindow = new google.maps.InfoWindow;
-				var geocoder = new google.maps.Geocoder();
-				var marker = new google.maps.Marker({
-					map: map
-				});
 
 				// 		google.maps.event.addListener(map, "click", function(e) {
 				// 			var lolatitude = e.latLng.lat(); //calculates latitude of the point of click
@@ -336,6 +332,9 @@ sap.ui.define([
 					}
 				}		
 			});
+		},
+		onNotificationAccept: function(oEvent) {
+			this.setFinalDirection();
 		}
 	});
 });

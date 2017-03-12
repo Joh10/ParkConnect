@@ -6,7 +6,8 @@
   "build": {
     "targetFolder": "dist",
     "sourceFolder": "webapp",
-    "buildRequired": true
+    "buildRequired": false,
+    "lastBuildDateTime": "Sun, 12 Mar 2017 11:09:37 GMT"
   },
   "generation": [
     {
@@ -18,6 +19,11 @@
       "templateId": "servicecatalog.connectivityComponent",
       "templateVersion": "0.0.0",
       "dateTimeStamp": "Sun, 12 Mar 2017 06:31:54 GMT"
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Sun, 12 Mar 2017 10:34:02 GMT"
     }
   ],
   "codeCheckingTriggers": {
@@ -46,5 +52,10 @@
     "loadCustomRequests": false,
     "mockRequestsFilePath": ""
   },
-  "hybrid": {}
+  "hybrid": {},
+  "hcpdeploy": {
+    "account": "s0015825817trial",
+    "name": "hackatonparkconnect",
+    "lastVersionWeTriedToDeploy": "1.0.1"
+  }
 }
