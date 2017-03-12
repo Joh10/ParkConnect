@@ -18,6 +18,14 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/parkconnectxsworkspace/tablesdata.xsodata",
+      "target": {
+        "type": "destination",
+        "name": "oDataParking"
+      },
+      "description": "HANA XS oData"
     }
   ],
   "sendWelcomeFileRedirect": true

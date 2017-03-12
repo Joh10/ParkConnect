@@ -1,5 +1,6 @@
-<mvc:View controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Book" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" navButtonPress="onNavBack" showNavButton="true">
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Book" displayBlock="true" navButtonPress="onNavBack"
+	showNavButton="true">
 	<App>
 		<pages>
 			<Page title="{i18n>title}" navButtonPress="onNavBack" showNavButton="true">
@@ -11,8 +12,8 @@
 							<VBox direction="Column">
 								<form:Form id="FormChange354" editable="true">
 									<form:layout>
-										<form:ResponsiveGridLayout id="SimpleFormDisplay480" 
-											labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="3" backgroundDesign="Transparent"/>
+										<form:ResponsiveGridLayout id="SimpleFormDisplay480" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1"
+											backgroundDesign="Transparent"/>
 									</form:layout>
 									<form:formContainers>
 										<form:FormContainer>
@@ -20,20 +21,16 @@
 												<form:FormElement label="Start">
 													<form:fields>
 														<HBox>
-															<Input id="idInput" width="auto" value="{OpportunityID}" editable="false"/>
-															<Input id="statusInput" width="auto" value="{ZStatus}" editable="false" textAlign="Left"/>
+															<Input id="idInput" width="auto" value="{OpportunityID}"/>
+															<Input id="statusInput" width="auto" value="{ZStatus}" textAlign="Left"/>
 														</HBox>
 													</form:fields>
 												</form:FormElement>
 												<form:FormElement label="Location">
 													<form:fields>
 														<HBox>
-															<DatePicker id="dateInputTime"
-																value="{path:'StartDate', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true, pattern: 'dd/MM/yy'}}"
-																change="onStartDateChangeProperty" required="true" displayFormat="dd/MM/yy"/>
-															<DatePicker id="validityInputTime"
-																value="{path:'CloseDate', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true, pattern: 'dd/MM/yy'}}"
-																change="onCloseDateChangeProperty" required="true" displayFormat="dd/MM/yy"/>
+															<Input id="fromLocation" width="auto" value="{OpportunityID}"/>
+															<Input id="toLocation" width="auto" value="{ZStatus}" textAlign="Left"/>
 														</HBox>
 													</form:fields>
 												</form:FormElement>
@@ -44,7 +41,19 @@
 							</VBox>
 						</layout:content>
 					</layout:Grid>
+					<List id="list" mode="Delete" delete="handleDelete" enableBusyIndicator="true" headerText="Products" growing="true"
+						items="{ path: '/ProductCollection' }">
+						<StandardListItem title="{Name}" description="{ProductId}" icon="{ProductPicUrl}" iconDensityAware="false" iconInset="false"/>
+					</List>
 				</content>
+				<footer>
+					<Toolbar>
+						<content>
+							<ToolbarSpacer/>
+							<Button id="saveButton" text="Save" press="onSavePress" icon="sap-icon://save" type="Accept"/>
+						</content>
+					</Toolbar>
+				</footer>
 			</Page>
 		</pages>
 	</App>

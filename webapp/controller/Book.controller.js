@@ -15,6 +15,20 @@ sap.ui.define([
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.navTo("main", {}, true);
 			}
+		},
+		handleDelete: function(oEvent) {
+			var oList = oEvent.getSource(),
+				oItem = oEvent.getParameter("listItem"),
+				sPath = oItem.getBindingContext().getPath();
+ 
+			// after deletion put the focus back to the list
+			oList.attachEventOnce("updateFinished", oList.focus, oList);
+ 
+			// send a delete request to the odata service
+			this.oProductModel.remove(sPath);
+		},
+		onSavePress: function(oEvent) {
+			
 		}
 	});
 });

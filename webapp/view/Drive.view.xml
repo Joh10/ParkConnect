@@ -1,5 +1,6 @@
 <mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-	controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Drive" displayBlock="true" navButtonPress="onNavBack" showNavButton="true">
+	controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Drive" displayBlock="true" navButtonPress="onNavBack"
+	showNavButton="true">
 	<App>
 		<pages>
 			<Page title="{i18n>title}" navButtonPress="onNavBack" showNavButton="true">
@@ -21,13 +22,51 @@
 													<form:fields>
 														<HBox>
 															<ToggleButton text="Monday"/>
-															<ToggleButton text="T"/>
-															<ToggleButton text="W"/>
-															<ToggleButton text="Monday"/>
-															<ToggleButton text="T"/>
-															<ToggleButton text="W"/>
-															<ToggleButton text="Monday"/>
+															<ToggleButton text="Tuesday"/>
+															<ToggleButton text="Wednesday"/>
+															<ToggleButton text="Thursday"/>
+															<ToggleButton text="Friday"/>
+															<ToggleButton text="Saturday"/>
+															<ToggleButton text="Sunday"/>
 														</HBox>
+													</form:fields>
+												</form:FormElement>
+											</form:formElements>
+										</form:FormContainer>
+										<form:FormContainer>
+											<form:formElements>
+												<form:FormElement label="Description">
+													<form:fields>
+														<Input id="descriptionInput"/>
+													</form:fields>
+												</form:FormElement>
+												<form:FormElement label="From home">
+													<form:fields>
+														<Switch state="true" customTextOn="Yes" customTextOff="No" change="onSwitchFromChange"/>
+													</form:fields>
+												</form:FormElement>
+												<form:FormElement id="fromElement" label="From" visible="false">
+													<form:fields>
+														<Input id="locationFrom"/>
+													</form:fields>
+												</form:FormElement>
+												<form:FormElement label="Departure hour">
+													<form:fields>
+														<TimePicker id="TP1" valueFormat="HH:mm" displayFormat="HH:mm"/>
+													</form:fields>
+												</form:FormElement>
+											</form:formElements>
+										</form:FormContainer>
+										<form:FormContainer>
+											<form:formElements>
+												<form:FormElement label="Back to home">
+													<form:fields>
+														<Switch state="true" customTextOn="Yes" customTextOff="No" change="onSwitchToChange"/>
+													</form:fields>
+												</form:FormElement>
+												<form:FormElement id="toElement" label="To" visible="false">
+													<form:fields>
+														<Input id="locationTo"/>
 													</form:fields>
 												</form:FormElement>
 											</form:formElements>
@@ -38,6 +77,14 @@
 						</layout:content>
 					</layout:Grid>
 				</content>
+				<footer>
+					<Toolbar>
+						<content>
+							<ToolbarSpacer/>
+							<Button id="saveButton" text="Save" press="onSavePress" icon="sap-icon://save" type="Accept"/>
+						</content>
+					</Toolbar>
+				</footer>
 			</Page>
 		</pages>
 	</App>

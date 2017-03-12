@@ -11,8 +11,25 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function(Controller) {
 			// navigator.geolocation.getCurrentPosition(this.onGeoSuccess, this.onGeoError, {enableHighAccuracy:true});
 		},
 		onSettingsPress: function() {
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("settings");
+			// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			// oRouter.navTo("settings");
+			var hanaOdatModel = new sap.ui.model.odata.ODataModel("/oDataParkingService");
+			var data = {};
+	
+			data["USERNAME"] = "Jo2";
+			data["PASS"] = "blabla";
+			data["FIRSTNAME"] = "userId";
+			data["LASTNAME"] = "C";
+
+			hanaOdatModel.create("/Users", data, {
+				success: function(oData) {
+					console.log("success");
+
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
 		},
 		/**
 		 *@memberOf com.ordina.parkconnectHackaton_ParkConnect.controller.Main
