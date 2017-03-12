@@ -1,24 +1,21 @@
-<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Start" displayBlock="true">
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.ordina.parkconnectHackaton_ParkConnect.controller.Start" displayBlock="true">
 	<SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
 		<detailPages>
 			<Page id="detail" title="Detail 1" class="sapUiStdPage">
 				<content id="map">
-					
+					<HBox id="map_canvas" fitContainer="true" justifyContent="Center" alignItems="Center"/>
 				</content>
 			</Page>
 		</detailPages>
-		
 		<masterPages>
 			<Page id="master" title="Master 1" icon="sap-icon://action" class="sapUiStdPage" navButtonPress="onNavBack" showNavButton="true">
 				<content>
-					<List id="list" items="{ path: '/OpportunityCollection', sorter: { path: 'OpportunityID', descending: true }, groupHeaderFactory: '.createGroupHeader' }" busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" selectionChange="onSelectionChange">
-						<infoToolbar>
-							<Toolbar active="true" id="filterBar" visible="{masterView>/isFilterBarVisible}" press="onOpenViewSettings">
-								<Title id="filterBarLabel" text="{masterView>/filterBarLabel}"/>
-							</Toolbar>
-						</infoToolbar>
+					<List id="list" items="{oDataParking>/Users}" noDataText="{masterView>/noDataText}"
+						mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true"
+						updateFinished="onUpdateFinished" selectionChange="onSelectionChange">
 						<items>
-							<ObjectListItem type="Navigation" press="onSelectionChange" title="{OpportunityID}" numberUnit="{HeaderRevenueSchedule}" number="kms"/>
+							<ObjectListItem type="Navigation" press="onSelectionChange" title="{oDataParking>USERNAME}" number="kms"/>
 						</items>
 					</List>
 				</content>
